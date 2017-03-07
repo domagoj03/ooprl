@@ -30,7 +30,8 @@ if (Input::exists()) {
         ]);
 
         if ($validate->passed()) {
-            echo "Passed";
+            Session::flash('success', 'You registered successfully');
+            header('Location: index.php');
         } else {
             foreach ($validate->errors() as $error) {
                 echo "$error <br>";

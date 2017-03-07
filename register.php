@@ -31,7 +31,9 @@ if (Input::exists()) {
     if ($validate->passed()) {
         echo "Passed";
     } else {
-        print_r($validate->errors());
+        foreach ($validate->errors() as $error) {
+            echo "$error <br>";
+        }
     }
 
 };

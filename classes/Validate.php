@@ -45,9 +45,6 @@ class Validate
                                 $this->addError("{$item} already exists.");
                             }
                             break;
-                        default:
-                            # code...
-                            break;
                     }
                 }
             }

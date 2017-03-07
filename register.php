@@ -38,7 +38,6 @@ if (Input::exists()) {
 
 };
 ?>
-
 <form action="" method="post">
     <div class="field">
         <label for="username">
@@ -63,6 +62,10 @@ if (Input::exists()) {
             Your name
         </label>
         <input type="text" name="name" value="<?php escape(Input::get('name')) ?>" id="name">
+    </div>
+    
+    <div class="hidden">
+        <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
     </div>
 
     <div class="field">

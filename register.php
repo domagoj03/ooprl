@@ -6,7 +6,7 @@ if (Input::exists()) {
     $validation = $validate->check($_POST, 
     [
         'username' => [
-            'required' => true;
+            'required' => true,
             'min' => 2,
             'max' => 20,
             'unique' => 'users'
@@ -27,8 +27,12 @@ if (Input::exists()) {
             'max' => 50, 
         ],
     ]);
-    
-    
+
+    if ($validate->passed()) {
+        echo "Passed";
+    } else {
+        print_r($validate->errors());
+    }
 
 };
 ?>
@@ -38,7 +42,7 @@ if (Input::exists()) {
         <label for="username">
             Username
         </label>
-        <input type="text" name="username" id="username" value="" autocomplete="off">
+        <input type="text" name="username" id="username" value="<?php escape(Input::get('username'))?>" autocomplete="off">
     </div>
     <div class="field">
         <label for="password">
@@ -54,8 +58,9 @@ if (Input::exists()) {
     </div>
     <div class="field">
         <label for="name">
-            Name
+            Your name
         </label>
+        <input type="text" name="name" value="<?php escape(Input::get('name')) ?>" id="name">
     </div>
 
     <div class="field">

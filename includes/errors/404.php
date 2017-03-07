@@ -1,0 +1,1 @@
+Oops there was something wrong. A 404 page example.

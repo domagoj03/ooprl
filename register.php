@@ -2,40 +2,41 @@
 require_once 'core/init.php';
 
 if (Input::exists()) {
-    $validate = new Validate();
-    $validation = $validate->check($_POST, 
-    [
-        'username' => [
-            'required' => true,
-            'min' => 2,
-            'max' => 20,
-            'unique' => 'users'
+    if (Token::check(Input::get('token'))) {
+        $validate = new Validate();
+        $validation = $validate->check($_POST, 
+        [
+            'username' => [
+                'required' => true,
+                'min' => 2,
+                'max' => 20,
+                'unique' => 'users'
+                ],
+            'password' => [
+                'required' => true,
+                'min' => 6,
+
             ],
-        'password' => [
-            'required' => true,
-            'min' => 6,
+            'password_again' => [
+                'required' => true,
+                'matches' => 'password',
 
-        ],
-        'password_again' => [
-            'required' => true,
-            'matches' => 'password',
+            ],
+            'name' => [
+                'required' => true,
+                'min' => 2,
+                'max' => 50, 
+            ],
+        ]);
 
-        ],
-        'name' => [
-            'required' => true,
-            'min' => 2,
-            'max' => 50, 
-        ],
-    ]);
-
-    if ($validate->passed()) {
-        echo "Passed";
-    } else {
-        foreach ($validate->errors() as $error) {
-            echo "$error <br>";
+        if ($validate->passed()) {
+            echo "Passed";
+        } else {
+            foreach ($validate->errors() as $error) {
+                echo "$error <br>";
+            }
         }
     }
-
 };
 ?>
 <form action="" method="post">
